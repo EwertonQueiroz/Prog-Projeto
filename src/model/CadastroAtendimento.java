@@ -11,7 +11,7 @@ public class CadastroAtendimento {
 	
 	public void cadastrar (Atendimento atendimento) {
 		if (atendimento != null)
-			if (!(this.atendimentos.existe(atendimento.getId())))
+			if (!(this.atendimentos.existe(atendimento.getCod())))
 				this.atendimentos.agendar(atendimento);
 			else
 				System.out.println("Atendimento já cadastrado.");
@@ -32,6 +32,10 @@ public class CadastroAtendimento {
 	
 	public void atualizar (Atendimento atendimento) {
 		this.atendimentos.atualizar(atendimento);
+	}
+	
+	public String toString () {
+		return this.atendimentos.toString();
 	}
 	
 }

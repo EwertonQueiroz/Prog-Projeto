@@ -2,6 +2,7 @@ package view;
 
 import model.Atendimento;
 import model.Dependente;
+import model.Fachada;
 import model.Medico;
 import model.Paciente;
 import model.Pessoa;
@@ -9,20 +10,56 @@ import model.Pessoa;
 public class Main {
 
 	public static void main(String[] args) {
-		Pessoa medico = new Medico("Médico 1", "12/05/1976", 1234567890, "medico1", "senha1", 654321);
+		Fachada f = Fachada.getInstance();
+		
+		Pessoa medico0 = new Medico("Médico 0", "12/05/1976", 1234567890, "medico0", "senha0", 654321);
+		Pessoa medico1 = new Medico("Médico 1", "20/09/1988", 987654321, "medico1", "senha1", 547684);
 		
 		Pessoa dependente0 = new Dependente("Dependente0", "15/06/1989", 1515154561);
 		Pessoa dependente1 = new Dependente("Dependente1", "15/06/1989", 1515154561);
 		
-		Pessoa paciente = new Paciente("Paciente 1", "05/05/1965", 213543543, "paciente1", "senha1", "nd");
+		Pessoa paciente0 = new Paciente("Paciente 0", "05/05/1965", 213543543, "paciente0", "senha0", "nd");
+		Pessoa paciente1 = new Paciente("Paciente 1", "31/12/1951", 324542378, "paciente1", "senha1", "nd");
 		
-		Atendimento atendimento = new Atendimento(medico, paciente, "Emergência", "20/06/2017", "Sintoma", "Prontuário", "Receita");
+		Atendimento atendimento0 = new Atendimento(medico0, paciente0, "Emergência", "20/06/2017", "Sintoma", "Prontuário", "Receita");
+		Atendimento atendimento1 = new Atendimento(medico1, paciente1, "Emergência", "20/06/2017", "Sintoma", "Prontuário", "Receita");
+		Atendimento atendimento2 = new Atendimento(medico0, paciente1, "Emergência", "20/06/2017", "Sintoma", "Prontuário", "Receita");
 		
-		((Paciente) paciente).adicionarDependente(dependente0);
-		((Paciente) paciente).adicionarDependente(dependente1);
+		((Paciente) paciente0).adicionarDependente(dependente0);
+		((Paciente) paciente0).adicionarDependente(dependente1);
 		
-		System.out.println(paciente);
-		System.out.println(medico);
+//		System.out.println(paciente0);
+//		System.out.println(medico0);
+//		System.out.println(atendimento0);
+//		System.out.println(atendimento1);
+//		System.out.println(atendimento2);
+		
+		f.cadastrar(medico0);
+		f.cadastrar(medico1);
+		f.cadastrar(paciente0);
+		f.cadastrar(paciente1);
+		f.cadastrar(atendimento0);
+		f.cadastrar(atendimento1);
+		f.cadastrar(atendimento2);
+//		f.cadastrar(dependente0);
+//		f.cadastrar(dependente1);
+		System.out.println("[ + ] Repositório após cadastros:\n\n" + f);
+		
+		medico1.setNome("Médico 01");
+		paciente0.setNome("Paciente 00");
+		atendimento1.setMedico(medico1);
+		atendimento1.setPaciente(paciente0);
+		f.atualizar(atendimento1);
+		System.out.println("\n\n[ + ] Repositório após atualizações:\n\n" + f);
+		
+		System.out.println("\n\n[ + ] Pesquisas:\nNão existe -> " + f.pesquisarAtendimento(4)
+							+ "\nExiste -> " + f.pesquisarAtendimento(2) + "\nExiste -> " + f.pesquisar(1234567890)
+							+ "\nNão Existe -> " + f.pesquisar(12343486));
+		
+		f.remover(987654321);
+		f.removerAtendimento(1);
+		
+		System.out.println("\n\n[ + ] Repositório após remoções:\n\n" + f);
 		
 	}
 

@@ -47,5 +47,9 @@ public class CadastroPessoa {
 	public void atualizar (Medico medico) {
 		this.pessoas.atualizar(medico);
 	}
+	
+	public String toString () {
+		return this.pessoas.toString();
+	}
 
 }

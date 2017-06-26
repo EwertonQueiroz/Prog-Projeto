@@ -25,7 +25,7 @@ public class RepositorioAtendimentosArray implements RepositorioAtendimentos {
 		Atendimento aux = null;
 		
 		for (int i = 0; i < this.atendimentos.size(); i++) {
-			if (this.atendimentos.get(i).getId() == id) {
+			if (this.atendimentos.get(i).getCod() == id) {
 				aux = this.atendimentos.get(i);
 				break;
 			}
@@ -37,7 +37,7 @@ public class RepositorioAtendimentosArray implements RepositorioAtendimentos {
 	@Override
 	public void remover (int id) {
 		for (int i = 0; i < this.atendimentos.size(); i++) {
-			if (this.atendimentos.get(i).getId() == id) {
+			if (this.atendimentos.get(i).getCod() == id) {
 				this.atendimentos.remove(i);
 				break;
 			}
@@ -47,8 +47,9 @@ public class RepositorioAtendimentosArray implements RepositorioAtendimentos {
 	@Override
 	public void atualizar (Atendimento atendimento) {
 		if (this.atendimentos.contains(atendimento)) {
-			this.remover(atendimento.getId());
-			this.agendar(atendimento);
+			int aux = this.atendimentos.indexOf(atendimento);
+			this.atendimentos.remove(atendimento);
+			this.atendimentos.add(aux, atendimento);
 		}
 	}
 
@@ -57,7 +58,7 @@ public class RepositorioAtendimentosArray implements RepositorioAtendimentos {
 		boolean result = false;
 		
 		for (int i = 0; i < this.atendimentos.size(); i++) {
-			if (this.atendimentos.get(i).getId() == id) {
+			if (this.atendimentos.get(i).getCod() == id) {
 				result = true;
 				break;
 			}
@@ -75,7 +76,7 @@ public class RepositorioAtendimentosArray implements RepositorioAtendimentos {
 			s.append(this.atendimentos.get(i).toString());
 			
 			if (i < this.atendimentos.size() - 1)
-				s.append(", ");
+				s.append(",\n\t");
 		}
 		
 		s.append("]");

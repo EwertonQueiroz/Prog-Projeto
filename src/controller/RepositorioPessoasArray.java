@@ -47,8 +47,9 @@ public class RepositorioPessoasArray implements RepositorioPessoas {
 	@Override
 	public void atualizar (Pessoa paciente) {
 		if (this.pessoas.contains(paciente)) {
-			this.remover(paciente.getCPF());
-			this.cadastrar(paciente);
+			int aux = this.pessoas.indexOf(paciente);
+			this.pessoas.remove(paciente);
+			this.pessoas.add(aux, paciente);
 		}
 	}
 
@@ -78,7 +79,7 @@ public class RepositorioPessoasArray implements RepositorioPessoas {
 				s.append(", ");
 		}
 		
-		s.append("]");
+		s.append("\n\t]");
 		
 		return s.toString();
 	}

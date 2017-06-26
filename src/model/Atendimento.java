@@ -1,7 +1,8 @@
 package model;
 
 public class Atendimento {
-	private static int id;
+	private static int id = 1;
+	private int cod;
 	private String sintoma;
 	private String prontuario;
 	private Pessoa paciente;
@@ -20,11 +21,11 @@ public class Atendimento {
 		this.sintoma = sintoma;
 		this.prontuario = prontuario;
 		this.receita = receita;
-		Atendimento.id++;
+		this.cod = Atendimento.id++;
 	}
 	
-	public int getId () {
-		return Atendimento.id;
+	public int getCod () {
+		return this.cod;
 	}
 	
 	public String getSintoma () {
@@ -81,5 +82,12 @@ public class Atendimento {
 	
 	public void setTipoAtendimento (String tipoAtendimento) {
 		this.tipoAtendimento = tipoAtendimento;
+	}
+	
+	public String toString () {
+		return "[ID: " + this.getCod() + ", Médico: " + this.getMedico().getNome() + ", Paciente: "
+				+ this.getPaciente().getNome() + ", Tipo de atendimento: " + this.getTipoAtendimento()
+				+ ", Data: " + this.getDataAtendimento() + ", Sintomas: " + this.getSintoma()
+				+ ", Prontuário: " + this.getProntuario() + ", Receita: " + this.getReceita() + "]";
 	}
 }

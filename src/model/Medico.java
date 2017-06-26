@@ -37,7 +37,7 @@ public class Medico extends Pessoa {
 	}
 	
 	public String toString () {
-		return "Médico:\n\t[Nome: " + this.getNome() + ", Data de Nascimento: " + this.getDataNasc() + ", CPF: " + this.getCPF() + ", CRM: " + this.getCRM() + "]";
+		return "\nMédico:\n\t[Nome: " + this.getNome() + ", Data de Nascimento: " + this.getDataNasc() + ", CPF: " + this.getCPF() + ", CRM: " + this.getCRM() + "]";
 	}
 
 }

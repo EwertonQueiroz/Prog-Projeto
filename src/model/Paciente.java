@@ -78,7 +78,7 @@ public class Paciente extends Pessoa {
 	
 	public String toString () {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Paciente:\n\t");
+		sb.append("\nPaciente:\n\t");
 		sb.append("[Nome: " + this.getNome() + ", Data de Nascimento: " + this.getDataNasc() + ", CPF: " + this.getCPF() + ", Convênio: " + this.getConvenio() + ", Dependentes: {");
 		
 		if (this.dependentes != null) {

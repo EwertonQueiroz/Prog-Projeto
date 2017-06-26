@@ -31,11 +31,39 @@ public class Fachada {
 			this.pessoas.cadastrar(((Medico) pessoa));
 	}
 	
-	public void pesquisar (int cpf) {
-		this.pessoas.procurar(cpf);
+	public void cadastrar (Atendimento atendimento) {
+		this.atendimentos.cadastrar(atendimento);
+	}
+	
+	public Pessoa pesquisar (int cpf) {
+		return this.pessoas.procurar(cpf);
+	}
+	
+	public Atendimento pesquisarAtendimento (int id) {
+		return this.atendimentos.procurar(id);
 	}
 	
 	public void remover (int cpf) {
 		this.pessoas.remover(cpf);
 	}
+	
+	public void removerAtendimento (int id) {
+		this.atendimentos.remover(id);
+	}
+	
+	public void atualizar (Pessoa pessoa) {
+		if (pessoa instanceof Paciente)
+			this.pessoas.atualizar(((Paciente) pessoa));
+		else
+			this.pessoas.cadastrar(((Medico) pessoa));
+	}
+	
+	public void atualizar (Atendimento atendimento) {
+		this.atendimentos.atualizar(atendimento);
+	}
+	
+	public String toString () {
+		return "Pessoas:\n" + this.pessoas.toString() + "\n\nAtendimentos:\n" + this.atendimentos.toString();
+	}
+	 
 }
