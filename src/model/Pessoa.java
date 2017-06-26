@@ -1,9 +1,10 @@
-package padrao;
+package model;
 
 public abstract class Pessoa {
 	private String nome;
 	private int cpf;
 	private String dataNasc;
+
 		
 	public Pessoa (String nome, String dataNasc, int cpf) {
 		this.nome = nome;

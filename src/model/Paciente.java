@@ -1,14 +1,18 @@
-package padrao;
+package model;
 
 import java.util.ArrayList;
 
-public class Cliente extends Pessoa {
+public class Paciente extends Pessoa {
 	private ArrayList<Pessoa> dependentes;
 	private String convenio;
+	private String login;
+	private String passwd;
 	
-	public Cliente(String nome, String dataNasc, int cpf, String convenio) {
+	public Paciente(String nome, String dataNasc, int cpf, String login, String passwd, String convenio) {
 		super(nome, dataNasc, cpf);
 		this.convenio = convenio;
+		this.login = login;
+		this.passwd = passwd;
 		this.dependentes = new ArrayList<Pessoa>();
 	}
 	
@@ -20,8 +24,24 @@ public class Cliente extends Pessoa {
 		return this.convenio;
 	}
 	
+	public String getLogin () {
+		return this.login;
+	}
+	
+	public String getPasswd () {
+		return this.passwd;
+	}
+	
 	public void setConvenio (String convenio) {
 		this.convenio = convenio;
+	}
+	
+	public void setLogin (String login) {
+		this.login = login;
+	}
+	
+	public void setPasswd (String passwd) {
+		this.passwd = passwd;
 	}
 	
 	public void adicionarDependente (Pessoa dependente) {
@@ -58,7 +78,8 @@ public class Cliente extends Pessoa {
 	
 	public String toString () {
 		StringBuilder sb = new StringBuilder();
-		sb.append("[Nome: " + this.getNome() + ", Data de Nascimento: " + this.getDataNasc() + ", CPF: " + this.getCPF() + ", Convênio: " + this.getConvenio() + ", Dependentes: ");
+		sb.append("Paciente:\n\t");
+		sb.append("[Nome: " + this.getNome() + ", Data de Nascimento: " + this.getDataNasc() + ", CPF: " + this.getCPF() + ", Convênio: " + this.getConvenio() + ", Dependentes: {");
 		
 		if (this.dependentes != null) {
 			for (int i = 0; i < this.dependentes.size(); i++) {
@@ -69,7 +90,7 @@ public class Cliente extends Pessoa {
 			}
 		}
 
-		sb.append("]");
+		sb.append("}]");
 		
 		return sb.toString();
 	}

@@ -1,4 +1,4 @@
-package padrao;
+package model;
 
 public class Dependente extends Pessoa {
 	
