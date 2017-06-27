@@ -1,6 +1,6 @@
-package model;
+package controller;
 
-import controller.RepositorioAtendimentos;
+import model.RepositorioAtendimentos;
 
 public class CadastroAtendimento {
 	private RepositorioAtendimentos atendimentos;

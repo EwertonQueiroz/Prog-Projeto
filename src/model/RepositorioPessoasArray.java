@@ -1,8 +1,8 @@
-package controller;
+package model;
 
 import java.util.ArrayList;
 
-import model.Pessoa;
+import controller.Pessoa;
 
 public class RepositorioPessoasArray implements RepositorioPessoas {
 	

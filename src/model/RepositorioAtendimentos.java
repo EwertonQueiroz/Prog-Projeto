@@ -1,6 +1,6 @@
-package controller;
+package model;
 
-import model.Atendimento;
+import controller.Atendimento;
 
 public interface RepositorioAtendimentos {
 

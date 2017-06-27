@@ -1,11 +1,11 @@
 package view;
 
-import model.Atendimento;
-import model.Dependente;
-import model.Fachada;
-import model.Medico;
-import model.Paciente;
-import model.Pessoa;
+import controller.Atendimento;
+import controller.Dependente;
+import controller.Fachada;
+import controller.Medico;
+import controller.Paciente;
+import controller.Pessoa;
 
 public class Main {
 

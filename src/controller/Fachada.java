@@ -1,9 +1,9 @@
-package model;
+package controller;
 
-import controller.RepositorioAtendimentos;
-import controller.RepositorioAtendimentosArray;
-import controller.RepositorioPessoas;
-import controller.RepositorioPessoasArray;
+import model.RepositorioAtendimentos;
+import model.RepositorioAtendimentosArray;
+import model.RepositorioPessoas;
+import model.RepositorioPessoasArray;
 
 public class Fachada {
 	private CadastroPessoa pessoas;

@@ -1,8 +1,8 @@
-package controller;
+package model;
 
 import java.util.ArrayList;
 
-import model.Atendimento;
+import controller.Atendimento;
 
 public class RepositorioAtendimentosArray implements RepositorioAtendimentos {
 

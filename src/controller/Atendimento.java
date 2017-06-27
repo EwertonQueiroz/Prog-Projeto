@@ -1,4 +1,4 @@
-package model;
+package controller;
 
 public class Atendimento {
 	private static int id = 1;

@@ -1,6 +1,6 @@
-package model;
+package controller;
 
-import controller.RepositorioPessoas;
+import model.RepositorioPessoas;
 
 public class CadastroPessoa {
 	private RepositorioPessoas pessoas;

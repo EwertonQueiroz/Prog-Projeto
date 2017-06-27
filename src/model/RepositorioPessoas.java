@@ -1,6 +1,6 @@
-package controller;
+package model;
 
-import model.Pessoa;
+import controller.Pessoa;
 
 public interface RepositorioPessoas {
 	
