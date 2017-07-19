@@ -9,24 +9,29 @@ public class CadastroPessoa {
 		this.pessoas = repositorio;
 	}
 
-	public void cadastrar (Paciente paciente) {
+	public void cadastrar (Paciente paciente) throws ExceptionPessoaCadastrada {
 		if (paciente != null)
 			if (!(this.pessoas.existe(paciente.getCPF())))
 				this.pessoas.cadastrar(paciente);
-			else
-				System.out.println("Paciente já cadastrado.");
-		else
-			System.out.println("Paciente inválido.");
+			else {
+				ExceptionPessoaCadastrada e = new ExceptionPessoaCadastrada(paciente.getNome(), paciente.getCPF(), paciente.getDataNasc());
+				throw e;
+			}
+		else {
+			System.out.println("Paciente invï¿½lido.");
+		}
 	}
 	
-	public void cadastrar (Medico medico) {
+	public void cadastrar (Medico medico) throws ExceptionPessoaCadastrada {
 		if (medico != null)
 			if (!(this.pessoas.existe(medico.getCPF())))
 				this.pessoas.cadastrar(medico);
-			else
-				System.out.println("Médico já cadastrado.");
+			else {
+				ExceptionPessoaCadastrada e = new ExceptionPessoaCadastrada(medico.getNome(), medico.getCPF(), medico.getDataNasc());
+				throw e;
+			}
 		else
-			System.out.println("Médico inválido.");
+			System.out.println("Mï¿½dico invï¿½lido.");
 	}
 
 	public Pessoa procurar (int cpf) {
@@ -37,14 +42,14 @@ public class CadastroPessoa {
 		if (this.pessoas.existe(cpf))
 			this.pessoas.remover(cpf);
 		else
-			System.out.println("Pessoa não encontrada.");
+			System.out.println("Pessoa nï¿½o encontrada.");
 	}
 
-	public void atualizar (Paciente paciente) {
+	public void atualizar (Paciente paciente) throws ExceptionPessoaCadastrada {
 		this.pessoas.atualizar(paciente);
 	}
 	
-	public void atualizar (Medico medico) {
+	public void atualizar (Medico medico) throws ExceptionPessoaCadastrada {
 		this.pessoas.atualizar(medico);
 	}
 	

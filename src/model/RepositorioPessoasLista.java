@@ -1,5 +1,6 @@
 package model;
 
+import controller.ExceptionPessoaCadastrada;
 import controller.Pessoa;
 
 public class RepositorioPessoasLista implements RepositorioPessoas {
@@ -12,7 +13,7 @@ public class RepositorioPessoasLista implements RepositorioPessoas {
 	}
 	
 	@Override
-	public void cadastrar (Pessoa paciente) {
+	public void cadastrar (Pessoa paciente) throws ExceptionPessoaCadastrada {
 		if (this.pessoa == null) {
 			this.pessoa = paciente;
 			this.proximo = new RepositorioPessoasLista();
@@ -39,9 +40,9 @@ public class RepositorioPessoasLista implements RepositorioPessoas {
 			if (this.pessoa == null)
 				return;
 		
-			/** Aqui vai dar erro quando tiver numa lista grande pois o "proximo" do anterior não está sendo atualizado,
-			 *  logo, após uma remoção, haverá um elemento nulo no meio da lista, dando origem a uma lista que pode
-			 *  ser acessada pela cabeça e outra que está inacessível.
+			/** Aqui vai dar erro quando tiver numa lista grande pois o "proximo" do anterior nï¿½o estï¿½ sendo atualizado,
+			 *  logo, apï¿½s uma remoï¿½ï¿½o, haverï¿½ um elemento nulo no meio da lista, dando origem a uma lista que pode
+			 *  ser acessada pela cabeï¿½a e outra que estï¿½ inacessï¿½vel.
 			 */
 			else if (this.pessoa.getCPF() == cpf)
 				this.pessoa = this.proximo.pessoa;
@@ -51,7 +52,7 @@ public class RepositorioPessoasLista implements RepositorioPessoas {
 	}
 
 	@Override
-	public void atualizar (Pessoa paciente) {
+	public void atualizar (Pessoa paciente) throws ExceptionPessoaCadastrada {
 		if (pessoa != null)
 			if (this.existe(pessoa.getCPF())) {
 				Pessoa aux = this.procurar(pessoa.getCPF());
@@ -60,7 +61,7 @@ public class RepositorioPessoasLista implements RepositorioPessoas {
 			}
 		
 		else
-			System.out.println("Pessoa inválida.");
+			System.out.println("Pessoa invï¿½lida.");
 	}
 
 	@Override

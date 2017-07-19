@@ -24,7 +24,7 @@ public class Fachada {
 		return Fachada.instance;
 	}
 	
-	public void cadastrar (Pessoa pessoa) {
+	public void cadastrar (Pessoa pessoa) throws ExceptionPessoaCadastrada {
 		if (pessoa instanceof Paciente)
 			this.pessoas.cadastrar(((Paciente) pessoa));
 		else
@@ -51,7 +51,7 @@ public class Fachada {
 		this.atendimentos.remover(id);
 	}
 	
-	public void atualizar (Pessoa pessoa) {
+	public void atualizar (Pessoa pessoa) throws ExceptionPessoaCadastrada {
 		if (pessoa instanceof Paciente)
 			this.pessoas.atualizar(((Paciente) pessoa));
 		else

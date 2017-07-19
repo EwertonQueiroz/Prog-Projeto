@@ -2,6 +2,7 @@ package view;
 
 import controller.Atendimento;
 import controller.Dependente;
+import controller.ExceptionPessoaCadastrada;
 import controller.Fachada;
 import controller.Medico;
 import controller.Paciente;
@@ -12,8 +13,8 @@ public class Main {
 	public static void main(String[] args) {
 		Fachada f = Fachada.getInstance();
 		
-		Pessoa medico0 = new Medico("Médico 0", "12/05/1976", 1234567890, "medico0", "senha0", 654321);
-		Pessoa medico1 = new Medico("Médico 1", "20/09/1988", 987654321, "medico1", "senha1", 547684);
+		Pessoa medico0 = new Medico("Mï¿½dico 0", "12/05/1976", 1234567890, "medico0", "senha0", 654321);
+		Pessoa medico1 = new Medico("Mï¿½dico 1", "20/09/1988", 987654321, "medico1", "senha1", 547684);
 		
 		Pessoa dependente0 = new Dependente("Dependente0", "15/06/1989", 1515154561);
 		Pessoa dependente1 = new Dependente("Dependente1", "15/06/1989", 1515154561);
@@ -21,9 +22,9 @@ public class Main {
 		Pessoa paciente0 = new Paciente("Paciente 0", "05/05/1965", 213543543, "paciente0", "senha0", "nd");
 		Pessoa paciente1 = new Paciente("Paciente 1", "31/12/1951", 324542378, "paciente1", "senha1", "nd");
 		
-		Atendimento atendimento0 = new Atendimento(medico0, paciente0, "Emergência", "20/06/2017", "Sintoma", "Prontuário", "Receita");
-		Atendimento atendimento1 = new Atendimento(medico1, paciente1, "Emergência", "20/06/2017", "Sintoma", "Prontuário", "Receita");
-		Atendimento atendimento2 = new Atendimento(medico0, paciente1, "Emergência", "20/06/2017", "Sintoma", "Prontuário", "Receita");
+		Atendimento atendimento0 = new Atendimento(medico0, paciente0, "Emergï¿½ncia", "20/06/2017", "Sintoma", "Prontuï¿½rio", "Receita");
+		Atendimento atendimento1 = new Atendimento(medico1, paciente1, "Emergï¿½ncia", "20/06/2017", "Sintoma", "Prontuï¿½rio", "Receita");
+		Atendimento atendimento2 = new Atendimento(medico0, paciente1, "Emergï¿½ncia", "20/06/2017", "Sintoma", "Prontuï¿½rio", "Receita");
 		
 		((Paciente) paciente0).adicionarDependente(dependente0);
 		((Paciente) paciente0).adicionarDependente(dependente1);
@@ -34,32 +35,41 @@ public class Main {
 //		System.out.println(atendimento1);
 //		System.out.println(atendimento2);
 		
-		f.cadastrar(medico0);
-		f.cadastrar(medico1);
-		f.cadastrar(paciente0);
-		f.cadastrar(paciente1);
+		try {
+			f.cadastrar(medico0);
+			f.cadastrar(medico0);
+			f.cadastrar(medico1);
+			f.cadastrar(paciente0);
+			f.cadastrar(paciente1);
+		} catch (ExceptionPessoaCadastrada e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			System.out.println("A pessoa " + e.getNome() + " nascida em " + e.getDataNascimento() + " com o CPF " + e.getCPF() + " jÃ¡ estÃ¡ cadastrada.");
+		}
+		
 		f.cadastrar(atendimento0);
 		f.cadastrar(atendimento1);
 		f.cadastrar(atendimento2);
 //		f.cadastrar(dependente0);
 //		f.cadastrar(dependente1);
-		System.out.println("[ + ] Repositório após cadastros:\n\n" + f);
+		System.out.println("[ + ] Repositï¿½rio apï¿½s cadastros:\n\n" + f);
 		
-		medico1.setNome("Médico 01");
+		medico1.setNome("Mï¿½dico 01");
 		paciente0.setNome("Paciente 00");
 		atendimento1.setMedico(medico1);
 		atendimento1.setPaciente(paciente0);
 		f.atualizar(atendimento1);
-		System.out.println("\n\n[ + ] Repositório após atualizações:\n\n" + f);
+		System.out.println("\n\n[ + ] Repositï¿½rio apï¿½s atualizaï¿½ï¿½es:\n\n" + f);
 		
-		System.out.println("\n\n[ + ] Pesquisas:\nNão existe -> " + f.pesquisarAtendimento(4)
+		System.out.println("\n\n[ + ] Pesquisas:\nNï¿½o existe -> " + f.pesquisarAtendimento(4)
 							+ "\nExiste -> " + f.pesquisarAtendimento(2) + "\nExiste -> " + f.pesquisar(1234567890)
-							+ "\nNão Existe -> " + f.pesquisar(12343486));
+							+ "\nNï¿½o Existe -> " + f.pesquisar(12343486));
 		
 		f.remover(987654321);
 		f.removerAtendimento(1);
 		
-		System.out.println("\n\n[ + ] Repositório após remoções:\n\n" + f);
+		System.out.println("\n\n[ + ] Repositï¿½rio apï¿½s remoï¿½ï¿½es:\n\n" + f);
 		
 	}
 

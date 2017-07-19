@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+import controller.ExceptionPessoaCadastrada;
 import controller.Pessoa;
 
 public class RepositorioPessoasArray implements RepositorioPessoas {
@@ -13,11 +14,11 @@ public class RepositorioPessoasArray implements RepositorioPessoas {
 	}
 	
 	@Override
-	public void cadastrar (Pessoa paciente) {
+	public void cadastrar (Pessoa paciente) throws ExceptionPessoaCadastrada {
 		if (paciente != null)
 			this.pessoas.add(paciente);
 		else
-			System.out.println("Paciente inválido.");
+			System.out.println("Paciente invï¿½lido.");
 	}
 
 	@Override
@@ -70,7 +71,7 @@ public class RepositorioPessoasArray implements RepositorioPessoas {
 	public String toString () {
 		StringBuilder s = new StringBuilder(); 
 		
-		s.append("Repositório Pessoas Array:\n\t[");
+		s.append("Repositï¿½rio Pessoas Array:\n\t[");
 		
 		for (int i = 0; i < this.pessoas.size(); i++) {
 			s.append(this.pessoas.get(i).toString());
