@@ -1,6 +1,8 @@
 package model;
 
 import controller.Atendimento;
+import controller.ExceptionAtendimentoCadastrado;
+import controller.ExceptionAtendimentoNaoEncontrado;
 
 public class RepositorioAtendimentosLista implements RepositorioAtendimentos {
 
@@ -12,7 +14,7 @@ public class RepositorioAtendimentosLista implements RepositorioAtendimentos {
 	}
 	
 	@Override
-	public void agendar (Atendimento atendimento) {
+	public void agendar (Atendimento atendimento) throws ExceptionAtendimentoCadastrado {
 		if (this.atendimento == null) {
 			this.atendimento = atendimento;
 			this.proximo = new RepositorioAtendimentosLista();
@@ -23,9 +25,11 @@ public class RepositorioAtendimentosLista implements RepositorioAtendimentos {
 	}
 
 	@Override
-	public Atendimento procurar (int id) {
-		if (this.atendimento == null)
-			return null;
+	public Atendimento procurar (int id) throws ExceptionAtendimentoNaoEncontrado{
+		if (this.atendimento == null) {
+			ExceptionAtendimentoNaoEncontrado e = new ExceptionAtendimentoNaoEncontrado(id);
+			throw e;
+		}
 		
 		else if (this.atendimento.getCod() == id)
 			return this.atendimento;
@@ -34,7 +38,7 @@ public class RepositorioAtendimentosLista implements RepositorioAtendimentos {
 	}
 
 	@Override
-	public void remover (int id) {
+	public void remover (int id) throws ExceptionAtendimentoNaoEncontrado {
 		if (this.existe(id))
 			if (this.atendimento == null)
 				return;
@@ -51,16 +55,12 @@ public class RepositorioAtendimentosLista implements RepositorioAtendimentos {
 	}
 
 	@Override
-	public void atualizar (Atendimento atendimento) {
-		if (atendimento != null)
-			if (this.existe(atendimento.getCod())) {
-				Atendimento aux = this.procurar(atendimento.getCod());
-				this.remover(atendimento.getCod());
-				this.proximo.agendar(aux);
-			}
-		
-		else
-			System.out.println("Atendimento inválido.");
+	public void atualizar (Atendimento atendimento) throws ExceptionAtendimentoCadastrado, ExceptionAtendimentoNaoEncontrado{
+		if (this.existe(atendimento.getCod())) {
+			Atendimento aux = this.procurar(atendimento.getCod());
+			this.remover(atendimento.getCod());
+			this.proximo.agendar(aux);
+		}
 	}
 
 	@Override

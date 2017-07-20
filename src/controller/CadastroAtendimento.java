@@ -9,28 +9,25 @@ public class CadastroAtendimento {
 		this.atendimentos = repositorio;
 	}
 	
-	public void cadastrar (Atendimento atendimento) {
-		if (atendimento != null)
-			if (!(this.atendimentos.existe(atendimento.getCod())))
-				this.atendimentos.agendar(atendimento);
-			else
-				System.out.println("Atendimento já cadastrado.");
-		else
-			System.out.println("Atendimento inválido.");
+	public void cadastrar (Atendimento atendimento) throws ExceptionAtendimentoCadastrado {
+		if (!(this.atendimentos.existe(atendimento.getCod())))
+			this.atendimentos.agendar(atendimento);
+		else {
+			ExceptionAtendimentoCadastrado e = new ExceptionAtendimentoCadastrado(atendimento.getCod(), atendimento.getPaciente(), atendimento.getMedico(), atendimento.getDataAtendimento());
+			throw e;
+		}
 	}
 	
-	public Atendimento procurar (int id) {
+	public Atendimento procurar (int id) throws ExceptionAtendimentoNaoEncontrado {
 		return this.atendimentos.procurar(id);
 	}
 	
-	public void remover (int id) {
+	public void remover (int id) throws ExceptionAtendimentoNaoEncontrado {
 		if (this.atendimentos.existe(id))
 			this.atendimentos.remover(id);
-		else
-			System.out.println("Atendimento não encontrado.");
 	}
 	
-	public void atualizar (Atendimento atendimento) {
+	public void atualizar (Atendimento atendimento) throws ExceptionAtendimentoNaoEncontrado, ExceptionAtendimentoCadastrado {
 		this.atendimentos.atualizar(atendimento);
 	}
 	

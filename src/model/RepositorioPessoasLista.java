@@ -24,23 +24,20 @@ public class RepositorioPessoasLista implements RepositorioPessoas {
 			this.proximo.cadastrar(paciente);
 	}
 
-	@Override // GAMBIARRA - GAMBIARRA - GAMBIARRA - GAMBIARRA - GAMBIARRA - GAMBIARRA - GAMBIARRA - GAMBIARRA   
+	@Override   
 	public Pessoa procurar (int cpf) throws ExceptionPessoaNaoEncontrada {
 		Pessoa aux = null;
 		
-		if (this.existe(cpf))
-			if (this.pessoa == null) {
-				ExceptionPessoaNaoEncontrada e = new ExceptionPessoaNaoEncontrada(cpf);
-				throw e;
-			}
-		
-			else if (this.pessoa.getCPF() == cpf)
-				aux = this.pessoa;
-		
-		else {
+		if (this.pessoa == null) {
 			ExceptionPessoaNaoEncontrada e = new ExceptionPessoaNaoEncontrada(cpf);
 			throw e;
 		}
+		
+		else if (this.pessoa.getCPF() == cpf)
+			aux = this.pessoa;
+		
+		else
+			this.proximo.procurar(cpf);
 		
 		return aux;
 	}

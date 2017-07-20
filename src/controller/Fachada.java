@@ -31,7 +31,7 @@ public class Fachada {
 			this.pessoas.cadastrar(((Medico) pessoa));
 	}
 	
-	public void cadastrar (Atendimento atendimento) {
+	public void cadastrar (Atendimento atendimento) throws ExceptionAtendimentoCadastrado {
 		this.atendimentos.cadastrar(atendimento);
 	}
 	
@@ -39,7 +39,7 @@ public class Fachada {
 		return this.pessoas.procurar(cpf);
 	}
 	
-	public Atendimento pesquisarAtendimento (int id) {
+	public Atendimento pesquisarAtendimento (int id) throws ExceptionAtendimentoNaoEncontrado {
 		return this.atendimentos.procurar(id);
 	}
 	
@@ -47,7 +47,7 @@ public class Fachada {
 		this.pessoas.remover(cpf);
 	}
 	
-	public void removerAtendimento (int id) {
+	public void removerAtendimento (int id) throws ExceptionAtendimentoNaoEncontrado {
 		this.atendimentos.remover(id);
 	}
 	
@@ -58,7 +58,7 @@ public class Fachada {
 			this.pessoas.cadastrar(((Medico) pessoa));
 	}
 	
-	public void atualizar (Atendimento atendimento) {
+	public void atualizar (Atendimento atendimento) throws ExceptionAtendimentoNaoEncontrado {
 		this.atendimentos.atualizar(atendimento);
 	}
 	
