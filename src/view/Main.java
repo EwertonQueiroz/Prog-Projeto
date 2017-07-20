@@ -3,6 +3,7 @@ package view;
 import controller.Atendimento;
 import controller.Dependente;
 import controller.ExceptionPessoaCadastrada;
+import controller.ExceptionPessoaNaoEncontrada;
 import controller.Fachada;
 import controller.Medico;
 import controller.Paciente;
@@ -41,12 +42,13 @@ public class Main {
 			f.cadastrar(medico1);
 			f.cadastrar(paciente0);
 			f.cadastrar(paciente1);
-		} catch (ExceptionPessoaCadastrada e) {
-			// TODO Auto-generated catch block
+		} 
+		
+		catch (ExceptionPessoaCadastrada e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 			System.out.println("A pessoa " + e.getNome() + " nascida em " + e.getDataNascimento() + " com o CPF " + e.getCPF() + " já está cadastrada.");
-		}
+		} 
 		
 		f.cadastrar(atendimento0);
 		f.cadastrar(atendimento1);
@@ -62,11 +64,21 @@ public class Main {
 		f.atualizar(atendimento1);
 		System.out.println("\n\n[ + ] Reposit�rio ap�s atualiza��es:\n\n" + f);
 		
-		System.out.println("\n\n[ + ] Pesquisas:\nN�o existe -> " + f.pesquisarAtendimento(4)
-							+ "\nExiste -> " + f.pesquisarAtendimento(2) + "\nExiste -> " + f.pesquisar(1234567890)
-							+ "\nN�o Existe -> " + f.pesquisar(12343486));
+		try {
+			System.out.println("\n\n[ + ] Pesquisas:\nN�o existe -> " + f.pesquisarAtendimento(4)
+								+ "\nExiste -> " + f.pesquisarAtendimento(2) + "\nExiste -> " + f.pesquisar(1234567890)
+								+ "\nN�o Existe -> " + f.pesquisar(12343486));
+		} catch (ExceptionPessoaNaoEncontrada e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		f.remover(987654321);
+		try {
+			f.remover(987654321);
+		} catch (ExceptionPessoaNaoEncontrada e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		f.removerAtendimento(1);
 		
 		System.out.println("\n\n[ + ] Reposit�rio ap�s remo��es:\n\n" + f);

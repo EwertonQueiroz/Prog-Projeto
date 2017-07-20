@@ -10,46 +10,38 @@ public class CadastroPessoa {
 	}
 
 	public void cadastrar (Paciente paciente) throws ExceptionPessoaCadastrada {
-		if (paciente != null)
-			if (!(this.pessoas.existe(paciente.getCPF())))
-				this.pessoas.cadastrar(paciente);
-			else {
-				ExceptionPessoaCadastrada e = new ExceptionPessoaCadastrada(paciente.getNome(), paciente.getCPF(), paciente.getDataNasc());
-				throw e;
-			}
+		if (!(this.pessoas.existe(paciente.getCPF())))
+			this.pessoas.cadastrar(paciente);
 		else {
-			System.out.println("Paciente inv�lido.");
+			ExceptionPessoaCadastrada e = new ExceptionPessoaCadastrada(paciente.getNome(), paciente.getCPF(), paciente.getDataNasc());
+			throw e;
 		}
 	}
 	
 	public void cadastrar (Medico medico) throws ExceptionPessoaCadastrada {
-		if (medico != null)
-			if (!(this.pessoas.existe(medico.getCPF())))
-				this.pessoas.cadastrar(medico);
-			else {
-				ExceptionPessoaCadastrada e = new ExceptionPessoaCadastrada(medico.getNome(), medico.getCPF(), medico.getDataNasc());
-				throw e;
-			}
-		else
-			System.out.println("M�dico inv�lido.");
+		if (!(this.pessoas.existe(medico.getCPF())))
+			this.pessoas.cadastrar(medico);
+		
+		else {
+			ExceptionPessoaCadastrada e = new ExceptionPessoaCadastrada(medico.getNome(), medico.getCPF(), medico.getDataNasc());
+			throw e;
+		}
 	}
 
-	public Pessoa procurar (int cpf) {
+	public Pessoa procurar (int cpf) throws ExceptionPessoaNaoEncontrada {
 		return this.pessoas.procurar(cpf);
 	}
 
-	public void remover (int cpf) {
+	public void remover (int cpf) throws ExceptionPessoaNaoEncontrada {
 		if (this.pessoas.existe(cpf))
 			this.pessoas.remover(cpf);
-		else
-			System.out.println("Pessoa n�o encontrada.");
 	}
 
-	public void atualizar (Paciente paciente) throws ExceptionPessoaCadastrada {
+	public void atualizar (Paciente paciente) throws ExceptionPessoaCadastrada, ExceptionPessoaNaoEncontrada {
 		this.pessoas.atualizar(paciente);
 	}
 	
-	public void atualizar (Medico medico) throws ExceptionPessoaCadastrada {
+	public void atualizar (Medico medico) throws ExceptionPessoaCadastrada, ExceptionPessoaNaoEncontrada {
 		this.pessoas.atualizar(medico);
 	}
 	

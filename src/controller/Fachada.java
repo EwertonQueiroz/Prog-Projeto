@@ -1,9 +1,9 @@
 package controller;
 
 import model.RepositorioAtendimentos;
-import model.RepositorioAtendimentosArray;
+import model.RepositorioAtendimentosLista;
 import model.RepositorioPessoas;
-import model.RepositorioPessoasArray;
+import model.RepositorioPessoasLista;
 
 public class Fachada {
 	private CadastroPessoa pessoas;
@@ -11,8 +11,8 @@ public class Fachada {
 	private static Fachada instance;
 	
 	private Fachada () {
-		RepositorioPessoas repositorioPessoas = new RepositorioPessoasArray();
-		RepositorioAtendimentos repositorioAtendimentos = new RepositorioAtendimentosArray();
+		RepositorioPessoas repositorioPessoas = new RepositorioPessoasLista();
+		RepositorioAtendimentos repositorioAtendimentos = new RepositorioAtendimentosLista();
 		this.pessoas = new CadastroPessoa(repositorioPessoas);
 		this.atendimentos = new CadastroAtendimento(repositorioAtendimentos);
 	}
@@ -35,7 +35,7 @@ public class Fachada {
 		this.atendimentos.cadastrar(atendimento);
 	}
 	
-	public Pessoa pesquisar (int cpf) {
+	public Pessoa pesquisar (int cpf) throws ExceptionPessoaNaoEncontrada {
 		return this.pessoas.procurar(cpf);
 	}
 	
@@ -43,7 +43,7 @@ public class Fachada {
 		return this.atendimentos.procurar(id);
 	}
 	
-	public void remover (int cpf) {
+	public void remover (int cpf) throws ExceptionPessoaNaoEncontrada {
 		this.pessoas.remover(cpf);
 	}
 	
@@ -51,7 +51,7 @@ public class Fachada {
 		this.atendimentos.remover(id);
 	}
 	
-	public void atualizar (Pessoa pessoa) throws ExceptionPessoaCadastrada {
+	public void atualizar (Pessoa pessoa) throws ExceptionPessoaCadastrada, ExceptionPessoaNaoEncontrada {
 		if (pessoa instanceof Paciente)
 			this.pessoas.atualizar(((Paciente) pessoa));
 		else

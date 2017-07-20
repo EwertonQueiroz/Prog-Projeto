@@ -1,6 +1,7 @@
 package model;
 
 import controller.ExceptionPessoaCadastrada;
+import controller.ExceptionPessoaNaoEncontrada;
 import controller.Pessoa;
 
 public class RepositorioPessoasLista implements RepositorioPessoas {
@@ -23,19 +24,29 @@ public class RepositorioPessoasLista implements RepositorioPessoas {
 			this.proximo.cadastrar(paciente);
 	}
 
-	@Override
-	public Pessoa procurar (int cpf) {
-		if (this.pessoa == null)
-			return null;
+	@Override // GAMBIARRA - GAMBIARRA - GAMBIARRA - GAMBIARRA - GAMBIARRA - GAMBIARRA - GAMBIARRA - GAMBIARRA   
+	public Pessoa procurar (int cpf) throws ExceptionPessoaNaoEncontrada {
+		Pessoa aux = null;
 		
-		else if (this.pessoa.getCPF() == cpf)
-			return this.pessoa;
+		if (this.existe(cpf))
+			if (this.pessoa == null) {
+				ExceptionPessoaNaoEncontrada e = new ExceptionPessoaNaoEncontrada(cpf);
+				throw e;
+			}
 		
-		return this.proximo.procurar(cpf);
+			else if (this.pessoa.getCPF() == cpf)
+				aux = this.pessoa;
+		
+		else {
+			ExceptionPessoaNaoEncontrada e = new ExceptionPessoaNaoEncontrada(cpf);
+			throw e;
+		}
+		
+		return aux;
 	}
 
 	@Override
-	public void remover (int cpf) {
+	public void remover (int cpf) throws ExceptionPessoaNaoEncontrada {
 		if (this.existe(cpf))
 			if (this.pessoa == null)
 				return;
@@ -52,16 +63,17 @@ public class RepositorioPessoasLista implements RepositorioPessoas {
 	}
 
 	@Override
-	public void atualizar (Pessoa paciente) throws ExceptionPessoaCadastrada {
-		if (pessoa != null)
-			if (this.existe(pessoa.getCPF())) {
-				Pessoa aux = this.procurar(pessoa.getCPF());
-				this.remover(pessoa.getCPF());
-				this.proximo.cadastrar(aux);
-			}
+	public void atualizar (Pessoa paciente) throws ExceptionPessoaCadastrada, ExceptionPessoaNaoEncontrada {
+		if (this.existe(pessoa.getCPF())) {
+			Pessoa aux = this.procurar(pessoa.getCPF());
+			this.remover(pessoa.getCPF());
+			this.proximo.cadastrar(aux);
+		}
 		
-		else
-			System.out.println("Pessoa inv�lida.");
+		else {
+			ExceptionPessoaNaoEncontrada e = new ExceptionPessoaNaoEncontrada(paciente.getNome(), paciente.getCPF(), paciente.getDataNasc());
+			throw e;
+		}
 	}
 
 	@Override

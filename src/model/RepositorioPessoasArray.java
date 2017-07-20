@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 
 import controller.ExceptionPessoaCadastrada;
+import controller.ExceptionPessoaNaoEncontrada;
 import controller.Pessoa;
 
 public class RepositorioPessoasArray implements RepositorioPessoas {
@@ -15,14 +16,11 @@ public class RepositorioPessoasArray implements RepositorioPessoas {
 	
 	@Override
 	public void cadastrar (Pessoa paciente) throws ExceptionPessoaCadastrada {
-		if (paciente != null)
-			this.pessoas.add(paciente);
-		else
-			System.out.println("Paciente inv�lido.");
+		this.pessoas.add(paciente);
 	}
 
 	@Override
-	public Pessoa procurar (int cpf) {
+	public Pessoa procurar (int cpf) throws ExceptionPessoaNaoEncontrada {
 		Pessoa aux = null;
 		
 		for (int i = 0; i < this.pessoas.size(); i++) {
@@ -32,25 +30,41 @@ public class RepositorioPessoasArray implements RepositorioPessoas {
 			}
 		}
 		
-		return aux;
+		if (aux != null)
+			return aux;
+		
+		else {
+			ExceptionPessoaNaoEncontrada e = new ExceptionPessoaNaoEncontrada(cpf);
+			throw e;
+		}
 	}
 
 	@Override
-	public void remover (int cpf) {
+	public void remover (int cpf) throws ExceptionPessoaNaoEncontrada {
 		for (int i = 0; i < this.pessoas.size(); i++) {
 			if (this.pessoas.get(i).getCPF() == cpf) {
 				this.pessoas.remove(i);
 				break;
 			}
+			
+			else if (i == this.pessoas.size()) {
+				ExceptionPessoaNaoEncontrada e = new ExceptionPessoaNaoEncontrada(cpf);
+				throw e;
+			}
 		}
 	}
 
 	@Override
-	public void atualizar (Pessoa paciente) {
+	public void atualizar (Pessoa paciente) throws ExceptionPessoaNaoEncontrada {
 		if (this.pessoas.contains(paciente)) {
 			int aux = this.pessoas.indexOf(paciente);
 			this.pessoas.remove(paciente);
 			this.pessoas.add(aux, paciente);
+		}
+		
+		else {
+			ExceptionPessoaNaoEncontrada e = new ExceptionPessoaNaoEncontrada(paciente.getNome(), paciente.getCPF(), paciente.getDataNasc());
+			throw e;
 		}
 	}
 
