@@ -1,15 +1,17 @@
 package controller;
 
+import java.time.LocalDate;
+
 public class Pessoa {
 	private String nome;
 	private int cpf;
-	private String dataNasc;
+	private LocalDate dataNasc;
 
-		
-	public Pessoa (String nome, String dataNasc, int cpf) {
+	// LANÇAR EXCEPTION DO LOCALDATE	-	 LANÇAR EXCEPTION DO LOCALDATE	-	LANÇAR EXCEPTION DO LOCALDATE	-	LANÇAR EXCEPTION DO LOCALDATE
+	public Pessoa (String nome, String diaNasc, String mesNasc, String anoNasc, int cpf) {
 		this.nome = nome;
 		this.cpf = cpf;
-		this.dataNasc = dataNasc;
+		this.dataNasc = LocalDate.parse(anoNasc.concat("-").concat(mesNasc).concat("-").concat(diaNasc));
 	}
 	
 	public String getNome () {
@@ -20,7 +22,7 @@ public class Pessoa {
 		return this.cpf;
 	}
 	
-	public String getDataNasc () {
+	public LocalDate getDataNasc () {
 		return this.dataNasc;
 	}
 	
@@ -32,8 +34,8 @@ public class Pessoa {
 		this.cpf = cpf;
 	}
 	
-	public void setDataNasc (String dataNasc) {
-		this.dataNasc = dataNasc;
+	public void setDataNasc (String dia, String mes, String ano) {
+		this.dataNasc = LocalDate.parse(ano.concat("-").concat(mes).concat("-").concat(dia));
 	}
 	
 }

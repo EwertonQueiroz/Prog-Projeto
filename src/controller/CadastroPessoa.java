@@ -13,7 +13,7 @@ public class CadastroPessoa {
 		if (!(this.pessoas.existe(paciente.getCPF())))
 			this.pessoas.cadastrar(paciente);
 		else {
-			ExceptionPessoaCadastrada e = new ExceptionPessoaCadastrada(paciente.getNome(), paciente.getCPF(), paciente.getDataNasc());
+			ExceptionPessoaCadastrada e = new ExceptionPessoaCadastrada(paciente.getNome(), paciente.getCPF());
 			throw e;
 		}
 	}
@@ -23,7 +23,7 @@ public class CadastroPessoa {
 			this.pessoas.cadastrar(medico);
 		
 		else {
-			ExceptionPessoaCadastrada e = new ExceptionPessoaCadastrada(medico.getNome(), medico.getCPF(), medico.getDataNasc());
+			ExceptionPessoaCadastrada e = new ExceptionPessoaCadastrada(medico.getNome(), medico.getCPF());
 			throw e;
 		}
 	}

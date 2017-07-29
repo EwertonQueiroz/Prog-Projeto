@@ -68,7 +68,7 @@ public class RepositorioPessoasLista implements RepositorioPessoas {
 		}
 		
 		else {
-			ExceptionPessoaNaoEncontrada e = new ExceptionPessoaNaoEncontrada(paciente.getNome(), paciente.getCPF(), paciente.getDataNasc());
+			ExceptionPessoaNaoEncontrada e = new ExceptionPessoaNaoEncontrada(paciente.getNome(), paciente.getCPF());
 			throw e;
 		}
 	}

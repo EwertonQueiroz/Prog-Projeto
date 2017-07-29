@@ -8,8 +8,8 @@ public class Paciente extends Pessoa {
 	private String login;
 	private String passwd;
 	
-	public Paciente(String nome, String dataNasc, int cpf, String login, String passwd, String convenio) {
-		super(nome, dataNasc, cpf);
+	public Paciente(String nome, String diaNasc, String mesNasc, String anoNasc, int cpf, String login, String passwd, String convenio) {
+		super(nome, diaNasc, mesNasc, anoNasc, cpf);
 		this.convenio = convenio;
 		this.login = login;
 		this.passwd = passwd;

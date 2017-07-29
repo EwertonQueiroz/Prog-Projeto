@@ -58,7 +58,7 @@ public class Fachada {
 			this.pessoas.cadastrar(((Medico) pessoa));
 	}
 	
-	public void atualizar (Atendimento atendimento) throws ExceptionAtendimentoNaoEncontrado {
+	public void atualizar (Atendimento atendimento) throws ExceptionAtendimentoNaoEncontrado, ExceptionAtendimentoCadastrado {
 		this.atendimentos.atualizar(atendimento);
 	}
 	
