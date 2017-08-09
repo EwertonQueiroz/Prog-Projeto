@@ -2,16 +2,16 @@ package controller;
 
 public class ExceptionPessoaNaoEncontrada extends Exception {
 	private String nome;
-	private int cpf;
+	private String cpf;
 	private String dataNasc;
 	
-	public ExceptionPessoaNaoEncontrada (String nome, int cpf) {
+	public ExceptionPessoaNaoEncontrada (String nome, String cpf) {
 		super("Pessoa não encontrada.");
 		this.nome = nome;
 		this.cpf = cpf;
 	}
 	
-	public ExceptionPessoaNaoEncontrada (int cpf) {
+	public ExceptionPessoaNaoEncontrada (String cpf) {
 		super("Pessoa não encontrada.");
 		this.cpf = cpf;
 	}
@@ -20,7 +20,7 @@ public class ExceptionPessoaNaoEncontrada extends Exception {
 		return this.nome;
 	}
 	
-	public int getCPF () {
+	public String getCPF () {
 		return this.cpf;
 	}
 

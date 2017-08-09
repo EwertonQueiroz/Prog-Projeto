@@ -28,11 +28,11 @@ public class CadastroPessoa {
 		}
 	}
 
-	public Pessoa procurar (int cpf) throws ExceptionPessoaNaoEncontrada {
+	public Pessoa procurar (String cpf) throws ExceptionPessoaNaoEncontrada {
 		return this.pessoas.procurar(cpf);
 	}
 
-	public void remover (int cpf) throws ExceptionPessoaNaoEncontrada {
+	public void remover (String cpf) throws ExceptionPessoaNaoEncontrada {
 		if (this.pessoas.existe(cpf))
 			this.pessoas.remover(cpf);
 	}

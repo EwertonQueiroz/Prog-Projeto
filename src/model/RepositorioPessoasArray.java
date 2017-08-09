@@ -20,11 +20,11 @@ public class RepositorioPessoasArray implements RepositorioPessoas {
 	}
 
 	@Override
-	public Pessoa procurar (int cpf) throws ExceptionPessoaNaoEncontrada {
+	public Pessoa procurar (String cpf) throws ExceptionPessoaNaoEncontrada {
 		Pessoa aux = null;
 		
 		for (int i = 0; i < this.pessoas.size(); i++) {
-			if (this.pessoas.get(i).getCPF() == cpf) {
+			if (this.pessoas.get(i).getCPF().equals(cpf)) {
 				aux = this.pessoas.get(i);
 				break;
 			}
@@ -40,9 +40,9 @@ public class RepositorioPessoasArray implements RepositorioPessoas {
 	}
 
 	@Override
-	public void remover (int cpf) throws ExceptionPessoaNaoEncontrada {
+	public void remover (String cpf) throws ExceptionPessoaNaoEncontrada {
 		for (int i = 0; i < this.pessoas.size(); i++) {
-			if (this.pessoas.get(i).getCPF() == cpf) {
+			if (this.pessoas.get(i).getCPF().equals(cpf)) {
 				this.pessoas.remove(i);
 				break;
 			}
@@ -69,11 +69,11 @@ public class RepositorioPessoasArray implements RepositorioPessoas {
 	}
 
 	@Override
-	public boolean existe (int cpf) {
+	public boolean existe (String cpf) {
 		boolean result = false;
 		
 		for (int i = 0; i < this.pessoas.size(); i++) {
-			if (this.pessoas.get(i).getCPF() == cpf) {
+			if (this.pessoas.get(i).getCPF().equals(cpf)) {
 				result = true;
 				break;
 			}

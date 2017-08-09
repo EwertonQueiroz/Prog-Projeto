@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Paciente extends Pessoa {
 	private ArrayList<Pessoa> dependentes;
@@ -8,8 +9,8 @@ public class Paciente extends Pessoa {
 	private String login;
 	private String passwd;
 	
-	public Paciente(String nome, String diaNasc, String mesNasc, String anoNasc, int cpf, String login, String passwd, String convenio) {
-		super(nome, diaNasc, mesNasc, anoNasc, cpf);
+	public Paciente(String nome, Date dataNasc, String cpf, String login, String passwd, String convenio) {
+		super(nome, dataNasc, cpf);
 		this.convenio = convenio;
 		this.login = login;
 		this.passwd = passwd;

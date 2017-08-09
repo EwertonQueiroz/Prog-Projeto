@@ -1,14 +1,11 @@
 package controller;
 
-import java.time.LocalDate;
-
 public class ExceptionPessoaCadastrada extends Exception {
 	private String nome;
-	private int cpf;
-	private String dataNasc;
+	private String cpf;
 	
-	public ExceptionPessoaCadastrada (String nome, int cpf) {
-		super("Pessoa já cadastrada.");
+	public ExceptionPessoaCadastrada (String nome, String cpf) {
+		super("Pessoa ja cadastrada.");
 		this.nome = nome;
 		this.cpf = cpf;
 	}
@@ -17,7 +14,7 @@ public class ExceptionPessoaCadastrada extends Exception {
 		return this.nome;
 	}
 	
-	public int getCPF () {
+	public String getCPF () {
 		return this.cpf;
 	}
 	

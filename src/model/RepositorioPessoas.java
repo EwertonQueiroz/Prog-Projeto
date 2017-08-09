@@ -8,12 +8,12 @@ public interface RepositorioPessoas {
 	
 	public void cadastrar (Pessoa pessoa) throws ExceptionPessoaCadastrada;
 	
-	public Pessoa procurar (int cpf) throws ExceptionPessoaNaoEncontrada;
+	public Pessoa procurar (String cpf) throws ExceptionPessoaNaoEncontrada;
 	
-	public void remover (int cpf) throws ExceptionPessoaNaoEncontrada;
+	public void remover (String cpf) throws ExceptionPessoaNaoEncontrada;
 	
 	public void atualizar (Pessoa pessoa) throws ExceptionPessoaCadastrada, ExceptionPessoaNaoEncontrada;
 	
-	public boolean existe (int cpf);
+	public boolean existe (String cpf);
 
 }

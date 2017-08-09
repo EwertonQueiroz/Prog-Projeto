@@ -35,7 +35,7 @@ public class Fachada {
 		this.atendimentos.cadastrar(atendimento);
 	}
 	
-	public Pessoa pesquisar (int cpf) throws ExceptionPessoaNaoEncontrada {
+	public Pessoa pesquisar (String cpf) throws ExceptionPessoaNaoEncontrada {
 		return this.pessoas.procurar(cpf);
 	}
 	
@@ -43,7 +43,7 @@ public class Fachada {
 		return this.atendimentos.procurar(id);
 	}
 	
-	public void remover (int cpf) throws ExceptionPessoaNaoEncontrada {
+	public void remover (String cpf) throws ExceptionPessoaNaoEncontrada {
 		this.pessoas.remover(cpf);
 	}
 	

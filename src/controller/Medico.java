@@ -1,12 +1,14 @@
 package controller;
 
+import java.util.Date;
+
 public class Medico extends Pessoa {
 	private int crm;
 	private String login;
 	private String passwd;
 	
-	public Medico(String nome, String diaNasc, String mesNasc, String anoNasc, int cpf, String login, String passwd, int crm) {
-		super(nome, diaNasc, mesNasc, anoNasc, cpf);
+	public Medico(String nome, Date dataNasc, String cpf, String login, String passwd, int crm) {
+		super(nome, dataNasc, cpf);
 		this.crm = crm;
 		this.login = login;
 		this.passwd = passwd;

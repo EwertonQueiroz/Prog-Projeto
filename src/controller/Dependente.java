@@ -1,9 +1,11 @@
 package controller;
 
+import java.util.Date;
+
 public class Dependente extends Pessoa {
 	
-	public Dependente(String nome, String diaNasc, String mesNasc, String anoNasc, int cpf) {
-		super(nome, diaNasc, mesNasc, anoNasc, cpf);
+	public Dependente(String nome, Date dataNasc, String cpf) {
+		super(nome, dataNasc, cpf);
 	}
 
 }

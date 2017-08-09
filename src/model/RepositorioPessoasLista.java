@@ -25,7 +25,7 @@ public class RepositorioPessoasLista implements RepositorioPessoas {
 	}
 
 	@Override   
-	public Pessoa procurar (int cpf) throws ExceptionPessoaNaoEncontrada {
+	public Pessoa procurar (String cpf) throws ExceptionPessoaNaoEncontrada {
 		Pessoa aux = null;
 		
 		if (this.pessoa == null) {
@@ -33,7 +33,7 @@ public class RepositorioPessoasLista implements RepositorioPessoas {
 			throw e;
 		}
 		
-		else if (this.pessoa.getCPF() == cpf)
+		else if (this.pessoa.getCPF().equals(cpf))
 			aux = this.pessoa;
 		
 		else
@@ -43,7 +43,7 @@ public class RepositorioPessoasLista implements RepositorioPessoas {
 	}
 
 	@Override
-	public void remover (int cpf) throws ExceptionPessoaNaoEncontrada {
+	public void remover (String cpf) throws ExceptionPessoaNaoEncontrada {
 		if (this.existe(cpf))
 			if (this.pessoa == null)
 				return;
@@ -52,7 +52,7 @@ public class RepositorioPessoasLista implements RepositorioPessoas {
 			 *  logo, ap�s uma remo��o, haver� um elemento nulo no meio da lista, dando origem a uma lista que pode
 			 *  ser acessada pela cabe�a e outra que est� inacess�vel.
 			 */
-			else if (this.pessoa.getCPF() == cpf)
+			else if (this.pessoa.getCPF().equals(cpf))
 				this.pessoa = this.proximo.pessoa;
 		
 		else
@@ -74,12 +74,12 @@ public class RepositorioPessoasLista implements RepositorioPessoas {
 	}
 
 	@Override
-	public boolean existe (int cpf) {
+	public boolean existe (String cpf) {
 		
 		if (this.pessoa == null)
 			return false;
 		
-		else if (this.pessoa.getCPF() == cpf)
+		else if (this.pessoa.getCPF().equals(cpf))
 			return true;
 		
 		return this.proximo.existe(cpf);
