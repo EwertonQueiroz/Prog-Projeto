@@ -28,7 +28,7 @@ import com.toedter.calendar.JDateChooser;
 import controller.Paciente;
 import controller.Pessoa;
 
-public class GUI extends JFrame {
+public class TelaCadastroPaciente extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNome;
@@ -43,7 +43,7 @@ public class GUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GUI frame = new GUI();
+					TelaCadastroPaciente frame = new TelaCadastroPaciente();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,8 +55,8 @@ public class GUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GUI() {
-		setTitle("Cl\u00EDnica");
+	public TelaCadastroPaciente() {
+		setTitle("Cadastro Paciente");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 785, 320);
 		
