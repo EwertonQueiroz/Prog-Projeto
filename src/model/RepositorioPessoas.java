@@ -1,12 +1,16 @@
 package model;
 
+import controller.Dependente;
 import controller.ExceptionPessoaCadastrada;
 import controller.ExceptionPessoaNaoEncontrada;
+import controller.Paciente;
 import controller.Pessoa;
 
 public interface RepositorioPessoas {
 	
 	public void cadastrar (Pessoa pessoa) throws ExceptionPessoaCadastrada;
+	
+	public void cadastrarDependente (Paciente titular, Dependente dependente) throws ExceptionPessoaCadastrada, ExceptionPessoaNaoEncontrada;
 	
 	public Pessoa procurar (String cpf) throws ExceptionPessoaNaoEncontrada;
 	

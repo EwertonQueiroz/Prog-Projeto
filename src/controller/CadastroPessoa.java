@@ -27,6 +27,24 @@ public class CadastroPessoa {
 			throw e;
 		}
 	}
+	
+	public void cadastrarDependente (Paciente paciente, Dependente dependente) throws ExceptionPessoaCadastrada, ExceptionPessoaNaoEncontrada {
+		Pessoa pessoa = this.pessoas.procurar(paciente.getCPF());
+		
+		if (pessoa instanceof Paciente)
+			if (!((Paciente) pessoa).getDependentes().containsValue(dependente))
+				this.pessoas.cadastrarDependente(paciente, dependente);
+			
+			else {
+				ExceptionPessoaCadastrada e = new ExceptionPessoaCadastrada(dependente.getNome(), dependente.getCPF());
+				throw e;
+			}
+		
+		else {
+			ExceptionPessoaNaoEncontrada e = new ExceptionPessoaNaoEncontrada(paciente.getCPF());
+			throw e;
+		}
+	}
 
 	public Pessoa procurar (String cpf) throws ExceptionPessoaNaoEncontrada {
 		return this.pessoas.procurar(cpf);

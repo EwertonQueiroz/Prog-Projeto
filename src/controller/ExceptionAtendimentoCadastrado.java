@@ -1,12 +1,14 @@
 package controller;
 
+import java.util.Date;
+
 public class ExceptionAtendimentoCadastrado extends Exception {
 	private int cod;
 	private Pessoa paciente;
 	private Pessoa medico;
-	private String dataAtendimento;
+	private Date dataAtendimento;
 	
-	public ExceptionAtendimentoCadastrado (int cod, Pessoa paciente, Pessoa medico, String dataAtendimento) {
+	public ExceptionAtendimentoCadastrado (int cod, Pessoa paciente, Pessoa medico, Date dataAtendimento) {
 		super("Atendimento já cadastrado.");
 		this.cod = cod;
 		this.paciente = paciente;
@@ -26,7 +28,7 @@ public class ExceptionAtendimentoCadastrado extends Exception {
 		return this.medico;
 	}
 	
-	public String getDataAtendimento () {
+	public Date getDataAtendimento () {
 		return this.dataAtendimento;
 	}
 }

@@ -6,6 +6,8 @@ public class Pessoa {
 	private String nome;
 	private String cpf;
 	private Date dataNasc;
+	
+	public Pessoa () {}
 
 	public Pessoa (String nome, Date dataNasc, String cpf) {
 		this.nome = nome;

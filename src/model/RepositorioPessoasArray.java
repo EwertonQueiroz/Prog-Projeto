@@ -2,8 +2,10 @@ package model;
 
 import java.util.ArrayList;
 
+import controller.Dependente;
 import controller.ExceptionPessoaCadastrada;
 import controller.ExceptionPessoaNaoEncontrada;
+import controller.Paciente;
 import controller.Pessoa;
 
 public class RepositorioPessoasArray implements RepositorioPessoas {
@@ -14,9 +16,26 @@ public class RepositorioPessoasArray implements RepositorioPessoas {
 		this.pessoas = new ArrayList<Pessoa>();
 	}
 	
+	public ArrayList<Pessoa> getRepositorioPessoas () {
+		return this.pessoas;
+	}
+	
 	@Override
 	public void cadastrar (Pessoa paciente) throws ExceptionPessoaCadastrada {
 		this.pessoas.add(paciente);
+	}
+	
+	@Override
+	public void cadastrarDependente(Paciente titular, Dependente dependente) throws ExceptionPessoaCadastrada, ExceptionPessoaNaoEncontrada {
+		Pessoa aux = this.procurar(titular.getCPF());
+		
+		if (aux == null) {
+			ExceptionPessoaNaoEncontrada e = new ExceptionPessoaNaoEncontrada(titular.getCPF());
+			throw e;
+		}
+		
+		else
+			((Paciente) aux).adicionarDependente(dependente);
 	}
 
 	@Override
@@ -38,7 +57,7 @@ public class RepositorioPessoasArray implements RepositorioPessoas {
 			throw e;
 		}
 	}
-
+	
 	@Override
 	public void remover (String cpf) throws ExceptionPessoaNaoEncontrada {
 		for (int i = 0; i < this.pessoas.size(); i++) {

@@ -14,6 +14,8 @@ public class Medico extends Pessoa {
 		this.passwd = passwd;
 	}
 	
+	public Medico() {}
+
 	public int getCRM () {
 		return this.crm;
 	}

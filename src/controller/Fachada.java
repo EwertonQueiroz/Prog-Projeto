@@ -1,9 +1,9 @@
 package controller;
 
 import model.RepositorioAtendimentos;
-import model.RepositorioAtendimentosLista;
+import model.RepositorioAtendimentosArray;
 import model.RepositorioPessoas;
-import model.RepositorioPessoasLista;
+import model.RepositorioPessoasArray;
 
 public class Fachada {
 	private CadastroPessoa pessoas;
@@ -11,8 +11,8 @@ public class Fachada {
 	private static Fachada instance;
 	
 	private Fachada () {
-		RepositorioPessoas repositorioPessoas = new RepositorioPessoasLista();
-		RepositorioAtendimentos repositorioAtendimentos = new RepositorioAtendimentosLista();
+		RepositorioPessoas repositorioPessoas = new RepositorioPessoasArray();
+		RepositorioAtendimentos repositorioAtendimentos = new RepositorioAtendimentosArray();
 		this.pessoas = new CadastroPessoa(repositorioPessoas);
 		this.atendimentos = new CadastroAtendimento(repositorioAtendimentos);
 	}
@@ -29,6 +29,10 @@ public class Fachada {
 			this.pessoas.cadastrar(((Paciente) pessoa));
 		else
 			this.pessoas.cadastrar(((Medico) pessoa));
+	}
+	
+	public void cadastrarDependente (Paciente paciente, Dependente dependente) throws ExceptionPessoaCadastrada, ExceptionPessoaNaoEncontrada {
+		this.pessoas.cadastrarDependente(paciente, dependente);
 	}
 	
 	public void cadastrar (Atendimento atendimento) throws ExceptionAtendimentoCadastrado {

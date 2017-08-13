@@ -1,7 +1,9 @@
 package model;
 
+import controller.Dependente;
 import controller.ExceptionPessoaCadastrada;
 import controller.ExceptionPessoaNaoEncontrada;
+import controller.Paciente;
 import controller.Pessoa;
 
 public class RepositorioPessoasLista implements RepositorioPessoas {
@@ -23,6 +25,20 @@ public class RepositorioPessoasLista implements RepositorioPessoas {
 		else
 			this.proximo.cadastrar(paciente);
 	}
+	
+	@Override
+	public void cadastrarDependente(Paciente titular, Dependente dependente) throws ExceptionPessoaCadastrada, ExceptionPessoaNaoEncontrada {
+		Pessoa aux = this.procurar(titular.getCPF());
+		
+		if (aux == null) {
+			ExceptionPessoaNaoEncontrada e = new ExceptionPessoaNaoEncontrada(titular.getCPF());
+			throw e;
+		}
+		
+		else
+			((Paciente) aux).adicionarDependente(dependente);
+	}
+
 
 	@Override   
 	public Pessoa procurar (String cpf) throws ExceptionPessoaNaoEncontrada {

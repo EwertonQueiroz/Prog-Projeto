@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.Date;
+
 public class Atendimento {
 	private static int id = 1;
 	private int cod;
@@ -7,13 +9,13 @@ public class Atendimento {
 	private String prontuario;
 	private Pessoa paciente;
 	private Pessoa medico;
-	private String dataAtendimento;
+	private Date dataAtendimento;
 	private String receita;
 	private String tipoAtendimento;
 	
 	public Atendimento () {}
 	
-	public Atendimento (Pessoa medico, Pessoa paciente, String tipoAtendimento, String data, String sintoma, String prontuario, String receita) {
+	public Atendimento (Pessoa medico, Pessoa paciente, String tipoAtendimento, Date data, String sintoma, String prontuario, String receita) {
 		this.medico = medico;
 		this.paciente = paciente;
 		this.tipoAtendimento = tipoAtendimento;
@@ -44,7 +46,7 @@ public class Atendimento {
 		return this.medico;
 	}
 	
-	public String getDataAtendimento () {
+	public Date getDataAtendimento () {
 		return this.dataAtendimento;
 	}
 	
@@ -72,7 +74,7 @@ public class Atendimento {
 		this.medico = medico;
 	}
 	
-	public void setDataAtendimento (String data) {
+	public void setDataAtendimento (Date data) {
 		this.dataAtendimento = data;
 	}
 	

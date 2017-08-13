@@ -2,21 +2,33 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import com.toedter.calendar.JDateChooser;
-import javax.swing.JPasswordField;
-import javax.swing.JButton;
+import javax.swing.border.EmptyBorder;
 
-public class TelaCadastroMedico extends JFrame {
+import com.toedter.calendar.JDateChooser;
+
+import controller.ExceptionPessoaCadastrada;
+import controller.Fachada;
+import controller.Medico;
+import controller.Pessoa;
+
+public class TelaCadastroMedico extends JInternalFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNome;
@@ -24,6 +36,9 @@ public class TelaCadastroMedico extends JFrame {
 	private JTextField txtCRM;
 	private JTextField txtLogin;
 	private JPasswordField passwordField;
+	private Pessoa pessoa;
+	
+	private static TelaCadastroMedico instance;
 
 	/**
 	 * Launch the application.
@@ -40,13 +55,24 @@ public class TelaCadastroMedico extends JFrame {
 			}
 		});
 	}
+	
+	public static TelaCadastroMedico getInstance () {
+		if (TelaCadastroMedico.instance == null)
+			TelaCadastroMedico.instance = new TelaCadastroMedico();
+		
+		return TelaCadastroMedico.instance;
+	}
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaCadastroMedico() {
+	private TelaCadastroMedico() {
+		setIconifiable(true);
+		setResizable(true);
+		setMaximizable(true);
+		setClosable(true);
 		setTitle("Cadastro M\u00E9dico");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 776, 310);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -72,11 +98,29 @@ public class TelaCadastroMedico extends JFrame {
 		
 		txtCPF = new JTextField();
 		txtCPF.setColumns(10);
+		txtCPF.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				String caracteres = "0987654321";
+				
+				if (!caracteres.contains(arg0.getKeyChar() + ""))
+					arg0.consume();
+			}
+		});
 		
 		JLabel lblCrm = new JLabel("CRM");
 		
 		txtCRM = new JTextField();
 		txtCRM.setColumns(10);
+		txtCRM.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				String caracteres = "0987654321";
+				
+				if (!caracteres.contains(arg0.getKeyChar() + ""))
+					arg0.consume();
+			}
+		});
 		
 		JLabel lblLogin = new JLabel("Login");
 		lblLogin.setFont(new Font("SansSerif", Font.PLAIN, 14));
@@ -90,6 +134,34 @@ public class TelaCadastroMedico extends JFrame {
 		passwordField = new JPasswordField();
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					pessoa = new Medico();
+					pessoa.setNome(txtNome.getText());
+					pessoa.setDataNasc(dateChooserDataNasc.getDate());
+					pessoa.setCPF(txtCPF.getText());
+					((Medico) pessoa).setCRM(Integer.parseInt(txtCRM.getText()));
+					((Medico) pessoa).setLogin(txtLogin.getText());
+					((Medico) pessoa).setPasswd(passwordField.getPassword().toString());
+				
+					Fachada.getInstance().cadastrar(pessoa);
+					
+					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso.");
+					
+					txtNome.setText("");
+					dateChooserDataNasc.cleanup();
+					txtCPF.setText("");
+					txtCRM.setText("");
+					txtLogin.setText("");
+					passwordField.setText("");
+				}
+				
+				catch (Exception e) {
+					JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+				}
+			}
+		});
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.TRAILING)
@@ -158,4 +230,5 @@ public class TelaCadastroMedico extends JFrame {
 		);
 		panel.setLayout(gl_panel);
 	}
+	
 }

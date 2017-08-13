@@ -1,23 +1,28 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Paciente extends Pessoa {
-	private ArrayList<Pessoa> dependentes;
+	private Map<String, Pessoa> dependentes;
 	private String convenio;
 	private String login;
 	private String passwd;
+	
+	public Paciente () {
+		this.dependentes = new HashMap<String, Pessoa>();
+	}
 	
 	public Paciente(String nome, Date dataNasc, String cpf, String login, String passwd, String convenio) {
 		super(nome, dataNasc, cpf);
 		this.convenio = convenio;
 		this.login = login;
 		this.passwd = passwd;
-		this.dependentes = new ArrayList<Pessoa>();
+		this.dependentes = new HashMap<String, Pessoa>();
 	}
 	
-	public ArrayList<Pessoa> getDependentes () {
+	public Map<String, Pessoa> getDependentes () {
 		return this.dependentes;
 	}
 	
@@ -46,35 +51,19 @@ public class Paciente extends Pessoa {
 	}
 	
 	public void adicionarDependente (Pessoa dependente) {
-		if (this.dependentes == null) {
-			this.dependentes = new ArrayList<Pessoa>();
-		}
-		
-		this.dependentes.add(dependente);
+		this.dependentes.put(this.getCPF(), dependente);
 	}
 
-	public void removerDependente (Pessoa dependente) {
-		if (this.dependentes.contains(dependente) != false)
-			this.dependentes.remove(dependente);
-		
-		else
-			System.out.println("Dependente não encontrado.");
+	public Pessoa removerDependente (Pessoa dependente) {
+		return this.dependentes.remove(dependente);
 	}
 	
 	public void atualizarDependente (Pessoa dependente) {
-		if (this.dependentes.contains(dependente) != false)
-			this.dependentes.remove(dependente);
-		
-		else
-			System.out.println("Dependente não encontrado.");
+		this.dependentes.replace(this.getCPF(), dependente);
 	}
 	
 	public Pessoa pesquisarDependente (Pessoa dependente) {
-		if (this.dependentes.contains(dependente) != false)
-			return this.dependentes.get(this.dependentes.indexOf(dependente));
-		
-		else
-			return null;
+		return this.dependentes.get(this.getCPF());
 	}
 	
 	public String toString () {

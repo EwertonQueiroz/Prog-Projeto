@@ -1,12 +1,14 @@
 package controller;
 
+import java.util.Date;
+
 public class ExceptionAtendimentoNaoEncontrado extends Exception {
 	private int cod;
 	private Pessoa paciente;
 	private Pessoa medico;
-	private String dataAtendimento;
+	private Date dataAtendimento;
 	
-	public ExceptionAtendimentoNaoEncontrado (int cod, Pessoa paciente, Pessoa medico, String dataAtendimento) {
+	public ExceptionAtendimentoNaoEncontrado (int cod, Pessoa paciente, Pessoa medico, Date dataAtendimento) {
 		super("Atendimento não encontrado.");
 		this.cod = cod;
 		this.paciente = paciente;
@@ -31,7 +33,7 @@ public class ExceptionAtendimentoNaoEncontrado extends Exception {
 		return this.medico;
 	}
 	
-	public String getDataAtendimento () {
+	public Date getDataAtendimento () {
 		return this.dataAtendimento;
 	}
 }

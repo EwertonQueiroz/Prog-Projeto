@@ -5,7 +5,7 @@ public class ExceptionPessoaCadastrada extends Exception {
 	private String cpf;
 	
 	public ExceptionPessoaCadastrada (String nome, String cpf) {
-		super("Pessoa ja cadastrada.");
+		super("Pessoa já cadastrada.");
 		this.nome = nome;
 		this.cpf = cpf;
 	}
