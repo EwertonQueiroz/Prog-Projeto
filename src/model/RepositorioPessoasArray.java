@@ -16,9 +16,6 @@ public class RepositorioPessoasArray implements RepositorioPessoas {
 		this.pessoas = new ArrayList<Pessoa>();
 	}
 	
-	public ArrayList<Pessoa> getRepositorioPessoas () {
-		return this.pessoas;
-	}
 	
 	@Override
 	public void cadastrar (Pessoa paciente) throws ExceptionPessoaCadastrada {
@@ -56,6 +53,11 @@ public class RepositorioPessoasArray implements RepositorioPessoas {
 			ExceptionPessoaNaoEncontrada e = new ExceptionPessoaNaoEncontrada(cpf);
 			throw e;
 		}
+	}
+	
+	@Override
+	public ArrayList<Pessoa> listarPessoas () {
+		return this.pessoas;
 	}
 	
 	@Override

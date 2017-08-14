@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 import model.RepositorioAtendimentos;
 import model.RepositorioAtendimentosArray;
 import model.RepositorioPessoas;
@@ -41,6 +43,10 @@ public class Fachada {
 	
 	public Pessoa pesquisar (String cpf) throws ExceptionPessoaNaoEncontrada {
 		return this.pessoas.procurar(cpf);
+	}
+	
+	public ArrayList<Pessoa> listarPessoas () {
+		return this.pessoas.listarPessoas();
 	}
 	
 	public Atendimento pesquisarAtendimento (int id) throws ExceptionAtendimentoNaoEncontrado {

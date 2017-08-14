@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import controller.Fachada;
 import controller.Paciente;
 import controller.Pessoa;
 import model.RepositorioPessoasArray;
@@ -18,7 +19,6 @@ import model.RepositorioPessoasArray;
 public class TelaGerenciarPacientes extends JInternalFrame {
 	private JTable table;
 	private Pessoa paciente;
-	private RepositorioPessoasArray repositorio = new RepositorioPessoasArray();
 	
 	private static TelaGerenciarPacientes instance = null;
 	
@@ -79,15 +79,15 @@ public class TelaGerenciarPacientes extends JInternalFrame {
 		
 		Object[] linha = new Object[5];
 		
-		for (Pessoa pessoa : repositorio.getRepositorioPessoas()) {
+		for (Pessoa pessoa : Fachada.getInstance().listarPessoas()) {
 			linha[0] = pessoa.getNome();
 			linha[1] = pessoa.getDataNasc();
 			linha[2] = pessoa.getCPF();
 			linha[3] = ((Paciente) pessoa).getConvenio();
 			linha[4] = ((Paciente) pessoa).getLogin();
+			
+			modelo.addRow(linha);
 		}
-		
-		modelo.addRow(linha);
 		
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(

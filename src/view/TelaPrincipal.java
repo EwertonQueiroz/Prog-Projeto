@@ -18,10 +18,10 @@ import javax.swing.JDesktopPane;
 public class TelaPrincipal extends JFrame {
 
 	private JPanel contentPane;
-	TelaCadastroPaciente telaCadastroPaciente = null;
-	TelaCadastroDependente telaCadastroDependente = null;
-	TelaCadastroMedico telaCadastroMedico = null;
-	TelaGerenciarPacientes telaGerenciarPacientes = null;
+	private TelaCadastroPaciente telaCadastroPaciente = null;
+	private TelaCadastroDependente telaCadastroDependente = null;
+	private TelaCadastroMedico telaCadastroMedico = null;
+	private TelaGerenciarPacientes telaGerenciarPacientes = null;
 
 	/**
 	 * Launch the application.

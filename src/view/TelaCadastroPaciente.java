@@ -75,7 +75,6 @@ public class TelaCadastroPaciente extends JInternalFrame {
 		setMaximizable(true);
 		setClosable(true);
 		setTitle("Cadastro Paciente");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 785, 320);
 		
 		contentPane = new JPanel();

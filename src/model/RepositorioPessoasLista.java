@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 import controller.Dependente;
 import controller.ExceptionPessoaCadastrada;
 import controller.ExceptionPessoaNaoEncontrada;
@@ -99,6 +101,12 @@ public class RepositorioPessoasLista implements RepositorioPessoas {
 			return true;
 		
 		return this.proximo.existe(cpf);
+	}
+
+	@Override
+	public ArrayList<Pessoa> listarPessoas() {
+		//return this.proximo;
+		return null;
 	}
 
 }

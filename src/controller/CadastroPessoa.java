@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 import model.RepositorioPessoas;
 
 public class CadastroPessoa {
@@ -48,6 +50,10 @@ public class CadastroPessoa {
 
 	public Pessoa procurar (String cpf) throws ExceptionPessoaNaoEncontrada {
 		return this.pessoas.procurar(cpf);
+	}
+	
+	public ArrayList<Pessoa> listarPessoas () {
+		return this.pessoas.listarPessoas();
 	}
 
 	public void remover (String cpf) throws ExceptionPessoaNaoEncontrada {

@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 import controller.Dependente;
 import controller.ExceptionPessoaCadastrada;
 import controller.ExceptionPessoaNaoEncontrada;
@@ -13,6 +15,8 @@ public interface RepositorioPessoas {
 	public void cadastrarDependente (Paciente titular, Dependente dependente) throws ExceptionPessoaCadastrada, ExceptionPessoaNaoEncontrada;
 	
 	public Pessoa procurar (String cpf) throws ExceptionPessoaNaoEncontrada;
+	
+	public ArrayList<Pessoa> listarPessoas ();
 	
 	public void remover (String cpf) throws ExceptionPessoaNaoEncontrada;
 	
