@@ -73,7 +73,6 @@ public class TelaCadastroPaciente extends JInternalFrame {
 		setIconifiable(true);
 		setResizable(true);
 		setMaximizable(true);
-		setClosable(true);
 		setTitle("Cadastro Paciente");
 		setBounds(100, 100, 785, 320);
 		

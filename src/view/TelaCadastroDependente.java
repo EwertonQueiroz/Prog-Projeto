@@ -72,7 +72,6 @@ public class TelaCadastroDependente extends JInternalFrame {
 		setIconifiable(true);
 		setResizable(true);
 		setMaximizable(true);
-		setClosable(true);
 		setTitle("Cadastro Dependente");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 810, 310);

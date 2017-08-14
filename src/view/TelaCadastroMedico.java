@@ -70,7 +70,6 @@ public class TelaCadastroMedico extends JInternalFrame {
 		setIconifiable(true);
 		setResizable(true);
 		setMaximizable(true);
-		setClosable(true);
 		setTitle("Cadastro M\u00E9dico");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 776, 310);
