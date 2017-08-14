@@ -4,27 +4,28 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyVetoException;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import controller.Fachada;
 import controller.Paciente;
 import controller.Pessoa;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.ImageIcon;
+import javax.swing.ListSelectionModel;
+import javax.swing.border.Border;
+import javax.swing.ScrollPaneConstants;
 
 public class TelaGerenciarPacientes extends JInternalFrame {
 	private JTable table;
-	TelaCadastroPacienteAux cadastroPacienteAux = new TelaCadastroPacienteAux();
+	private JScrollPane scroll;
+	private TelaCadastroPacienteAux cadastroPacienteAux = new TelaCadastroPacienteAux();
 	
 	private static TelaGerenciarPacientes instance = null;
 	
@@ -61,7 +62,7 @@ public class TelaGerenciarPacientes extends JInternalFrame {
 		setResizable(true);
 		setBounds(100, 100, 897, 520);
 		
-		JPanel panel = new JPanel();
+		JPanel panel = new JPanel(new BorderLayout());
 		getContentPane().add(panel, BorderLayout.CENTER);
 		
 		JButton btnCadastrarPaciente = new JButton("Cadastrar Paciente");
@@ -82,11 +83,17 @@ public class TelaGerenciarPacientes extends JInternalFrame {
 		DefaultTableModel modelo = new DefaultTableModel();
 		
 		table = new JTable();
-		//JScrollPane scrollpane = new JScrollPane(table);
-		
-		table.setCellSelectionEnabled(true);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setShowVerticalLines(true);
 		table.setShowHorizontalLines(true);
+		
+		scroll = new JScrollPane(table);
+		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		panel.add(scroll);
+		
+		table.revalidate();
+		table.repaint();
 		
 		Object[] colunas = {"Nome", "Data de Nascimento", "CPF", "Convênio", "Login"};
 		modelo.setColumnIdentifiers(colunas);
@@ -109,8 +116,9 @@ public class TelaGerenciarPacientes extends JInternalFrame {
 		JButton btnAtualizartela = new JButton("");
 		btnAtualizartela.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				table.setModel(new DefaultTableModel(null, new String[]{"Nome", "Data de Nascimento", "CPF", "Convênio", "Login"}));
-				table.setModel(modelo);
+				modelo.getDataVector().removeAllElements();
+				modelo.fireTableDataChanged();
+				
 				for (Pessoa pessoa : Fachada.getInstance().listarPessoas()) {
 					if (pessoa instanceof Paciente) {
 						linha[0] = pessoa.getNome();
@@ -125,6 +133,12 @@ public class TelaGerenciarPacientes extends JInternalFrame {
 			}
 		});
 		btnAtualizartela.setIcon(new ImageIcon("C:\\Users\\Ewerton\\Downloads\\btn-atualizar_30x30.png"));
+		
+		btnAtualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(

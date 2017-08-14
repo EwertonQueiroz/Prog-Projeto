@@ -30,7 +30,6 @@ import com.toedter.calendar.JDateChooser;
 import controller.Fachada;
 import controller.Paciente;
 import controller.Pessoa;
-import model.RepositorioPessoasArray;
 
 public class TelaCadastroPaciente extends JInternalFrame {
 
@@ -114,7 +113,7 @@ public class TelaCadastroPaciente extends JInternalFrame {
 		lblDataNasc.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		
 		JDateChooser dateChooser = new JDateChooser();
-		
+				
 		JFormattedTextField txtCPF = new JFormattedTextField();
 		txtCPF.addKeyListener(new KeyAdapter() {
 			@Override

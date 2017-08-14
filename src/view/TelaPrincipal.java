@@ -68,8 +68,8 @@ public class TelaPrincipal extends JFrame {
 		JMenu mnGerenciar = new JMenu("Gerenciar");
 		menuBar.add(mnGerenciar);
 		
-		JMenuItem mntmPessoas = new JMenuItem("Pessoas");
-		mnGerenciar.add(mntmPessoas);
+		JMenuItem mntmPacientes = new JMenuItem("Pacientes");
+		mnGerenciar.add(mntmPacientes);
 		
 		JMenuItem mntmAtendimentos = new JMenuItem("Atendimentos");
 		mnGerenciar.add(mntmAtendimentos);
@@ -142,7 +142,7 @@ public class TelaPrincipal extends JFrame {
 			}
 		});
 		
-		mntmPessoas.addActionListener(new ActionListener() {
+		mntmPacientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (telaGerenciarPacientes == null) {
 					telaGerenciarPacientes = TelaGerenciarPacientes.getInstance();
